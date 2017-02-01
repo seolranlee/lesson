@@ -1,0 +1,95 @@
+LTS(Long term service) : 오랫동안 서포트. 안정적, 신뢰도 높음
+
+https://github.com/riahnrhyme/hanpixel-api-nodejs/tree/master
+
+
+
+node.js
+
+자바스크립트기반의 서버사이드 툴
+
+npm : 저장소(자바스크립트 기반의 프로그램들을 모아 놓은 공간 )
+package.json : 호환성을 확인하는 것
+init : 시작하는 개념
+
+
+웹팩과 비슷한 개념
+
+
+router : controler
+
+
+중요!
+
+// 웹방식 (restful) - api
+// http://ip.co.kr/abc/abc/1 : 이게 rest. 주소로 데이터를 조회한다.
+
+
+
+GET(조회), POST(입력), PUT(수정), DELETE(삭제) 는 무조건 알아야 한다.(웹을 한다고 하면)
+
+프론트는 MV방식.C가 필요없음.
+
+<GET>
+
+ 
+// GET ALL BOOKS
+    app.get('/api/books', function(req,res){
+        Book.find(function(err, books){
+            if(err) return res.status(500).send({error: 'database failure'});
+            res.json(books);
+        })
+    });
+
+
+GET
+http://52.198.201.69/
+http://52.198.201.69/api/books
+
+[{"_id":"583101387e7361240381d29e","published_date":"123","author":"123","title":"123","__v":0},{"_id":"5831015c7e7361240381d2a0","published_date":"qwe","author":"qwe","title":"qwe","__v":0}]
+
+json형태이다.
+
+
+크롬 jsonview
+
+https://chrome.google.com/webstore/search/json%20view?utm_source=chrome-ntp-icon
+
+
+ // GET SINGLE BOOK
+    app.get('/api/books/:book_id', function(req, res){
+        Book.findOne({_id: req.params.book_id}, function(err, book){
+            if(err) return res.status(500).json({error: err});
+            if(!book) return res.status(404).json({error: 'book not found'});
+            res.json(book);
+        })
+    });
+
+http://52.198.201.69/api/books/583101387e7361240381d29e
+
+
+    // GET BOOK BY AUTHOR
+    app.get('/api/books/author/:author', function(req, res){
+        Book.find({author: req.params.author}, {_id: 0, title: 1, published_date: 1},  function(err, books){
+            if(err) return res.status(500).json({error: err});
+            if(books.length === 0) return res.status(404).json({error: 'book not found'});
+            res.json(books);
+        })
+    });
+
+http://52.198.201.69/api/books/author/123
+
+
+
+<POST>
+
+http://52.198.201.69/
+여기서 데이터를 작성하고 등록을 누르는 행위가 POST
+
+
+
+ajax사용을 할 때 url 입력시 생기는 이슈
+
+- 크로스도메인(CORS)
+
+다른 도메인일 경우 다른 도메인의 데이터를 함부로 가져오지 못한다.

@@ -1,0 +1,3 @@
+
+#ban div{color:red;} /* css로 동적으로 만들어진 태그에도 스타일 입힐 수 있음 */
+#phone div{color:blue;}

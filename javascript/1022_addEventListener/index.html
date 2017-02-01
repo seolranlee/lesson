@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="제작툴"/>
+        <meta name="author" content="제작자" />
+        <meta name="keywords" content="사이트 키워드" />
+        <meta name="description" content="사이트 설명" />
+        <title>Hanpixel</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+
+
+    	<!-- 자바스크립트 -->
+    	<!-- <script>
+    		
+    		alert('자바스크립트 출력');
+
+    	</script>-->
+
+
+
+    	<!-- 01.html inline방식(권장하지 않는 방법) -->
+    	<script>
+    		
+    		function go(){
+
+    			 alert('everybody coding');
+    		}	//함수
+
+    	</script>
+
+    	<!-- <div id="box" onclick="alert('everybody coding');"><div id="box" onclick="alert('everybody coding');"></div></div> -->
+
+    	<!-- <div id="box" onclick="go();"></div> -->
+    	<!-- 
+	    	대상:div#box
+	    	특정시점:클릭하는 시점
+	    	기능:go함수안에 정의된 내용 
+    	-->
+
+
+
+    	<!-- 02.onload방식 -->
+    	<script>
+    		
+    		window.onload = function(){
+
+    			document.getElementById('box').onclick = function(){
+
+    				alert('everybody coding');
+
+    			}
+
+    		}
+
+    		// 코드가 패턴(대상을 정하고 시점을 선택한 후 기능을 수행하라)을 좀 더 따라가는 구조로 바꾸게 된다.
+
+    	</script>
+    	<div id="box"></div>
+
+
+    	<!-- 03.W3C 권고안(표준이 권장하는 방식) -->
+    	<script>
+    		window.onload = function(){
+
+				// addEventListener
+				document.getElementById('box1').addEventListener('click',function(){
+						alert('everybody coding');
+				});
+
+				// ie미표준 브라우저
+
+			}
+
+    	</script>
+    	<div id="box1"></div>
+
+
+
+
+    </body>
+</html>

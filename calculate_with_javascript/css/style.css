@@ -1,0 +1,10 @@
+.container{width:500px;margin:20px;}
+.top{overflow:hidden;margin-bottom:20px;}
+input{height:40px;padding:0 15px;font-size:22px;float:left;margin-right:5px;border:1px solid #ccc;}
+
+#inner{width:120px;}
+#four{width:20px;text-align:center;}
+#result{width:180px;text-align:right;}
+
+.button{width:260px;}
+button{width:60px;height:40px;float:left;margin-right:5px;margin-bottom:5px;cursor:pointer;font-size:16px;}

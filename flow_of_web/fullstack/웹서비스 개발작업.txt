@@ -1,0 +1,165 @@
+개발환경
+
+1. 서버를 구축하자. (클라우드 시스템 활용)
+   - 클라우드시스템으로 유명한 회사: 아마존(쇼핑몰)
+   - https://www.amazon.com/ap/signin?openid.assoc_handle=aws&openid.return_to=https%3A%2F%2Fsignin.aws.amazon.com%2Foauth%3Fresponse_type%3Dcode%26client_id%3Darn%253Aaws%253Aiam%253A%253A015428540659%253Auser%252Fawssignupportal%26redirect_uri%3Dhttps%253A%252F%252Fportal.aws.amazon.com%252Fbilling%252Fsignup%253Fredirect_url%253Dhttps%25253A%25252F%25252Faws.amazon.com%25252Fregistration-confirmation%2526state%253DhashArgs%252523%2526isauthcode%253Dtrue%26noAuthCookie%3Dtrue&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&action=&disableCorpSignUp=&clientContext=&marketPlaceId=&poolName=&authCookies=&pageId=aws.ssop&siteState=pre-register%2Cen_US&accountStatusPolicy=P1&sso=&openid.pape.preferred_auth_policies=MultifactorPhysical&openid.pape.max_auth_age=120&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&server=%2Fap%2Fsignin%3Fie%3DUTF8&accountPoolAlias=&forceMobileApp=0&language=en_US&forceMobileLayout=0
+
+   - Ubuntu Server16.04 LTS : OS선택
+   - CPU, MEMORY, GB 등 셀렉트
+   - 쌤이 만든 서버의 public IP: http://52.198.43.196/
+   - 웹서버를 구축하지않았기 때문에 접속되지 않는 상태.
+   - 논리적 서버(가상화)
+ 
+/////////////////////// 서버개발자의 역할(s) ///////////////////////
+
+2. 웹서버를 구축하자
+   - 서버의 종류는 다양해.푸쉬서버도 있고.. 그 중 웹서버를 만들자.
+   - 가장 유명한 아파치, 요즘 유행하는 엔진엑스
+   - 맥: 터미널
+     윈도우: putty
+     서버에 접속을 해서 웹 서버를 설치하기위해서 putty 라는 프로그램을 활용한다.
+   - ubunt라고 치면 OS에 접속됨
+   - 해당 OS에 맞는 내용으로 엔진엑스를 깔게되면,
+   - http://52.198.43.196/ 접속 가능
+
+
+3. 웹서버 상에 사용할 백엔드 언어 선택( jsp, asp, .net, python, javaScript(node.js), go(스타트업에서 핫함) )
+   - 가장 쉬운 php 설치
+   - 웹에 접속할 수 있는 폴더 생성
+   - index.php파일 생성(http://jolse.ipdisk.co.kr:8888/)
+   - <?php echo 'hello world'?>
+
+/////////////////////// 백엔드(및 서버개발자)의 역할(s) ///////////////////////
+
+4. 데이터베이스 설치( msspl, mongoDB, oracle )
+   - mysql
+   - show database
+   - create database dbname;
+
+5. 데이터베이스에 정보를 삽입(쿼리문)
+   - use exam
+   - CREATE TABLE actor(
+   - num int,
+   - name varchar(10),
+   - age int);
+   - show tables;
+   - select*from actor;
+
+   - insert into actor VALUES(1,'정우성',30);
+   - insert into actor VALUES(2,'현빈'',32);
+   - exit
+   
+6. MVC 패턴(개발패턴)으로 개발하기 위해 프레임워크를 선택
+   - 개발의 구조를 사용하기 편하게 만들어 놓은 툴
+   - php의 프레임 워크 -> codeigniter 3
+   - Mode(databases) View(html+css+js) Controller(제어)
+   - MVC패턴의 도식화: https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/327/1262.png
+   - MVC란 Model View Controller의 약자로 에플리케이션을 세가지의 역할로 구분한 개발 방법론이다. 위의 그림처럼 사용자가 Controller를 조작하면 Controller는 Model을 통해서 데이터를 가져오고 그 정보를 바탕으로 시각적인 표현을 담당하는 View를 제어해서 사용자에게 전달하게 된다. 
+
+   - https://www.codeigniter.com/
+   - 설치의 개념이 아니라 코드가 들어있다.
+   - 컨트롤러와 뷰는 짝이 맞아야한다. 항상. 꼭. 중요함!
+
+
+/////////////////////// 프론트엔드(및 백엔드)의 역할(s) ///////////////////////
+
+7. IDE툴(sftp)(서브라임텍스트3, ATOM, Brakets)을 사용해서 내 PC에 자동 서버에 적용되는 환경을 조성.
+
+8. (M)VC 를 활용해서 페이지를 만든다.
+
+views, models, controllers 이 세공간을 조작
+
+views폴더에 main.php을 만든다.
+안녕하세요
+
+<?php echo '누구세요' ?>
+
+controllers폴더에 Main.php 파일을 만들때 첫글자는 대문자로.
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+
+	public function index()
+	{
+		$this->load->view('main');
+	}
+}
+
+
+
+둘이 짝이 맞을 때 비로소 화면에 views에서 만든 main.php파일이 출력된다.
+
+http://jolse.ipdisk.co.kr:8888/main(확장자 생략해도 됨.)
+
+9. MVC를 활용해서 디비에 데이터를 화면에 뿌려준다.
+
+<?php include 'header.php' ?>
+<?php include 'footer.php' ?>
+
+data를 뿌려주기 위해 models폴더에 파일을 만든다. main_model.php
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main_model extends CI_Controller {
+
+	public function get_actor()
+    {
+            $query = $this->db->get('actor');
+            return $query->result();
+    }
+}
+
+
+controllers Main.php파일에 모델의 정보를 가져온다.
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+
+	public function index()
+	{
+
+		$this->load->model('Main_model');
+
+        	$data['result'] = $this->Main_model->get_actor();	//데이터가 배열의 형태로 들어간다.
+		
+		var_dump($data['query']);	//콘솔과 비슷한 기능
+
+		$this->load->view('main',$data);
+	}
+}
+
+
+
+
+
+views.php에 받은 데이터를 뿌려준다.
+
+<?php include 'header.php' ?>     
+    
+    <table>
+        <?php foreach ($result as $item):?>
+
+            <tr>
+                <td><?php echo $item->num ?></td>
+                <td><?php echo $item->name ?></td>
+                <td><?php echo $item->age ?></td>
+            </tr>
+
+        <?php endforeach;?>   
+    </table>
+
+<?php include 'footer.php' ?>      
+
+
+foreach는 자바스크립트의 for in문과같다.(배열을 뿌려주는 방법)
+
+
+
+컨트롤러는 모델과 뷰를 연결시킨다.
+
+컨트롤러는 모델에 접근해야 하는지아닌지를 판단하고 뷰에 뿌려준다.
