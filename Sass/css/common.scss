@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/* 블럭 주석 */
+// 한줄 주석 : 자바스크립트의 주석이라 css파일에는 반영되지 않는다. 
+
+
+// 1. sass : 변수
+// 변수: 하나의 정보를 담아 둘 수 있는 주머니 혹은 컵
+
+/*
+$themeColor:blue;
+$boxWith:300px;
+
+
+.box{width:$boxWith;height:300px;margin-bottom:20px;background:$themeColor}
+
+.nemo{width:$boxWith/2;height:300px;background:$themeColor;}
+// 산술 연산이 가능해진다. 
+
+*/
+
+
+// 2. sass : 규칙들
+
+/*
+$border: 5px;
+$backbg: #ffaa50;
+$backbgdark: darken($backbg, 20%);
+
+// 로그인 창 스타일
+// 증첩 스타일: Nesting
+.exam{
+	&.exam1{background:blue}
+	
+	&:hover{background:#ccc}
+
+	body & {background:#ddd}
+
+	border: $border solid red;
+
+	@at-root p{background:$backbg;} // @at-root : 자식개념이 아니라 전체의 개념으로 빠지게 된다.
+	@at-root p:hover{background:$backbgdark;}
+
+	p{width:200px;height:200px;border:$border - 2 solid green;}
+	
+}
+*/
+
+
+// 3. 상속
+
+/*
+%nemo-style {
+	width: 200px;
+	height:100px;
+	border:10px solid red;
+}
+
+.header{
+	@extend %nemo-style;
+
+}
+
+.content{
+	@extend %nemo-style;
+
+}
+
+.footer{
+	@extend %nemo-style;
+	border:10px solid blue;
+}
+*/
+
+// 4. mixin ( 믹스인 )	// sass에서 강력하고 중요한 기능!
+/*
+@mixin nemo-style($border-color, $border-width) {
+	width : 100px;
+	height : 100px;
+	border : {	// border후에 바로 중괄호가 아니라 : 가 나오는 건 border가 셀렉터가 아니란 의미다.
+		width : $border-width;
+		style : solid;
+		color : $border-color;
+	}
+}
+
+// 파라미터를 받아서 '부분적인 스타일'로 넘겨줄 수 있는게 extend(상속)과 비교되는 믹스인에 가장 강력한 기능이다. 상속은 부분적인 스타일로 넘겨줄 수 없다. 모든 스타일을 상속해 줄 수 밖에 없다. 
+// 자바스크립트의 함수와 같은 개념이다.
+
+.header{
+	
+	@include nemo-style(green, 20px);
+}
+
+.content{
+	
+	@include nemo-style(blue, 30px);
+}
+
+.footer{
+	
+	@include nemo-style(orange, 40px);
+}
+
+*/
+
+
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+img{vertical-align:top;}
+li{list-style:none}
+
+// 변수 모음
+$main-theme: #33ce6d;	// 메인테마 색상
+$main-width:1170px;
+$box-margin:5px;
+$box-content: $main-width/5 - $box-margin*2;	// px끼리의 계산
+$percentage: 100%;
+$main-desktop:1000px;
+$main-tablet:768px;
+$main-mobile:480px;
+
+// fix : 고정레이어, mobile: 반응형
+$web-type : fix;
+
+
+header{
+	height:55px;
+	background:$main-theme;
+	margin-bottom:20px;
+}
+.wrapper{
+	
+	@if $web-type == fix {
+
+		width:$main-width;
+
+	} @else if $web-type == mobile {
+
+		max-width:$main-width;
+	}
+
+	max-width:$main-width;
+	margin:0 auto;
+}
+
+h1{color:#fff;font-size:20px;line-height:55px;}
+
+
+
+@mixin responsive-width($number) {		// 이 number에 따라서 반응형 구현 가능.(배치되는 개수 달라짐)
+	width: calc(#{$percentage/$number} - #{$box-margin*2});
+	// 'css 값' '중간에' 변수를 쓸 수 없다.
+	// 값들 사이에 변수를 넣기 위해 sass 문법이라고 표기를 해준다. => #{}
+}
+
+.bandBox{
+	float:left;
+	@include responsive-width(5);	// 카드 5개 배치
+	margin:$box-margin;
+	img{width:100%;};
+	.bandCell{height:55px}
+
+}
+
+@media screen and ( max-width:1170px ) {	// 질문
+	$web-type : mobile;
+}
+
+
+
+
+
+/*
+header{height:55px;line-height:55px;background:#33ce6d;}
+header h1{color:#fff;font-size:24px;}
+.wrapper{width:1170px;margin:0 auto;}
+.bandBox{float:left;width:calc( 20% - 20px );margin:10px;border:1px solid #ccc}
+.bandBox img{width:100%;}
+.bandLine{height:20px;background:#33ce6d}
+.bandName{}
+.bandName .bandCell{padding:20px ;text-align:center;font-size:14px;}
+
+
+@media screen and ( max-width:1170px ) {
+	.wrapper{width:980px;margin:0 auto;}
+	.bandBox{width:calc( 25% - 20px)}
+}
+
+@media screen and ( max-width:980px ) {
+
+	.wrapper{width:640px;margin:0 auto;}
+	.bandBox{width:calc( 50% - 20px)}
+
+}
+*/

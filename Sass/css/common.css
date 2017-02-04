@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* 블럭 주석 */
+/*
+$themeColor:blue;
+$boxWith:300px;
+
+
+.box{width:$boxWith;height:300px;margin-bottom:20px;background:$themeColor}
+
+.nemo{width:$boxWith/2;height:300px;background:$themeColor;}
+// 산술 연산이 가능해진다. 
+
+*/
+/*
+$border: 5px;
+$backbg: #ffaa50;
+$backbgdark: darken($backbg, 20%);
+
+// 로그인 창 스타일
+// 증첩 스타일: Nesting
+.exam{
+	&.exam1{background:blue}
+	
+	&:hover{background:#ccc}
+
+	body & {background:#ddd}
+
+	border: $border solid red;
+
+	@at-root p{background:$backbg;} // @at-root : 자식개념이 아니라 전체의 개념으로 빠지게 된다.
+	@at-root p:hover{background:$backbgdark;}
+
+	p{width:200px;height:200px;border:$border - 2 solid green;}
+	
+}
+*/
+/*
+%nemo-style {
+	width: 200px;
+	height:100px;
+	border:10px solid red;
+}
+
+.header{
+	@extend %nemo-style;
+
+}
+
+.content{
+	@extend %nemo-style;
+
+}
+
+.footer{
+	@extend %nemo-style;
+	border:10px solid blue;
+}
+*/
+/*
+@mixin nemo-style($border-color, $border-width) {
+	width : 100px;
+	height : 100px;
+	border : {	// border후에 바로 중괄호가 아니라 : 가 나오는 건 border가 셀렉터가 아니란 의미다.
+		width : $border-width;
+		style : solid;
+		color : $border-color;
+	}
+}
+
+// 파라미터를 받아서 '부분적인 스타일'로 넘겨줄 수 있는게 extend(상속)과 비교되는 믹스인에 가장 강력한 기능이다. 상속은 부분적인 스타일로 넘겨줄 수 없다. 모든 스타일을 상속해 줄 수 밖에 없다. 
+// 자바스크립트의 함수와 같은 개념이다.
+
+.header{
+	
+	@include nemo-style(green, 20px);
+}
+
+.content{
+	
+	@include nemo-style(blue, 30px);
+}
+
+.footer{
+	
+	@include nemo-style(orange, 40px);
+}
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+img {
+  vertical-align: top; }
+
+li {
+  list-style: none; }
+
+header {
+  height: 55px;
+  background: #33ce6d;
+  margin-bottom: 20px; }
+
+.wrapper {
+  width: 1170px;
+  max-width: 1170px;
+  margin: 0 auto; }
+
+h1 {
+  color: #fff;
+  font-size: 20px;
+  line-height: 55px; }
+
+.bandBox {
+  float: left;
+  width: calc(20% - 10px);
+  margin: 5px; }
+  .bandBox img {
+    width: 100%; }
+  .bandBox .bandCell {
+    height: 55px; }
+
+/*
+header{height:55px;line-height:55px;background:#33ce6d;}
+header h1{color:#fff;font-size:24px;}
+.wrapper{width:1170px;margin:0 auto;}
+.bandBox{float:left;width:calc( 20% - 20px );margin:10px;border:1px solid #ccc}
+.bandBox img{width:100%;}
+.bandLine{height:20px;background:#33ce6d}
+.bandName{}
+.bandName .bandCell{padding:20px ;text-align:center;font-size:14px;}
+
+
+@media screen and ( max-width:1170px ) {
+	.wrapper{width:980px;margin:0 auto;}
+	.bandBox{width:calc( 25% - 20px)}
+}
+
+@media screen and ( max-width:980px ) {
+
+	.wrapper{width:640px;margin:0 auto;}
+	.bandBox{width:calc( 50% - 20px)}
+
+}
+*/
+
+/*# sourceMappingURL=common.css.map */
